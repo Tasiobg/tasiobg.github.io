@@ -9,7 +9,7 @@ function makeRequest() {
     return false;
   }
   httpRequest.onreadystatechange = updateContent;
-  httpRequest.open('GET', 'test.html');
+  httpRequest.open('GET', url);
   httpRequest.send();
 }
 
