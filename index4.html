@@ -36,10 +36,11 @@
     function buildHtml(data){
       let htmlAccumulator = "<div>";
         for (const rowData in data.sheets[0].data[0].rowData) {
+          console.log(rowData);
           htmlAccumulator = "<div>" + rowData.formattedValue + "<div>";
         }
       htmlAccumulator = htmlAccumulator + "</div>";
-      console.log(htmlAccumulator);
+      // console.log(htmlAccumulator);
     }
 
   </script>
