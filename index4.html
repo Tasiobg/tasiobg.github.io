@@ -27,7 +27,7 @@
         "includeGridData": true
       }).then(function (response) {
         // Handle the results here (response.result has the parsed body).
-        console.log("Response", response.sheets.data.rowData);
+        console.log("Response", response.result.sheets.data.rowData);
       },
         function (err) { console.error("Execute error", err); });
     }
