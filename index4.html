@@ -28,15 +28,40 @@
       }).then(function (response) {
         // Handle the results here (response.result has the parsed body).
         console.log("Response", response.result);
+        buildHtml(response.result);
       },
         function (err) { console.error("Execute error", err); });
+    }
+
+    function buildHtml(data){
+      let htmlAccumulator = "<div>";
+        for (const rowData in data.sheets[0].data[0].rowData) {
+          htmlAccumulator = "<div>" + rowData.formattedValue + "<div>";
+        }
+      let htmlAccumulator = htmlAccumulator + "</div>";
+      console.log(htmlAccumulator);
     }
 
   </script>
 </head>
 
 <body>
-  <div id="results"></div>
+  <div id="results">
+    <!-- <div class="row">
+      <div class="cell"></div>
+      <div class="cell">2-Aug-2021</div>
+      <div class="cell">9-Aug-2021</div>
+      <div class="cell">16-Aug-2021</div>
+      <div class="cell">23-Aug-2021</div>
+    </div>
+    <div class="row">
+      <div class="cell">Person1</div>
+      <div class="cell">Project Name one</div>
+      <div class="cell">Project Name one</div>
+      <div class="cell">Project name two</div>
+      <div class="cell">Project name two</div>
+    </div> -->
+  </div>
   <button onclick="execute()">execute</button>
 </body>
 
