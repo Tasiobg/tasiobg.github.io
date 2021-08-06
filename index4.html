@@ -1,6 +1,14 @@
 <html>
 
 <head>
+  <style>
+    .row {
+      display: block;
+    }
+    .cell {
+      display: inline-block;
+    }
+    </style>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
     onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
@@ -43,7 +51,7 @@
             htmlAccumulator += "<div class='cell'>";
               htmlAccumulator += "<div>" + data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue + "<div>";
               htmlAccumulator += "</div>";
-              console.log(htmlAccumulator);
+              // console.log(htmlAccumulator);
               // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
           }
           htmlAccumulator += "</div>";
