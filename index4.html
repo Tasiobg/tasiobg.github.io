@@ -36,12 +36,18 @@
     function buildHtml(data) {
       let htmlAccumulator = "<div>";
         for (const rowData in data.sheets[0].data[0].rowData) {
+          // lines
+          htmlAccumulator = htmlAccumulator + "<div class='row'>";
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
-            // htmlAccumulator = "<div>" + rowData.formattedValue + "<div>";
-              console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
+            htmlAccumulator = htmlAccumulator + "<div class='cell'>";
+              htmlAccumulator = "<div>" + data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue + "<div>";
+              htmlAccumulator = htmlAccumulator + "</div>";
+              // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
           }
+          htmlAccumulator = htmlAccumulator + "</div>";
         }
       htmlAccumulator = htmlAccumulator + "</div>";
+      document.getElementById('results').innerHTML = htmlAccumulator;
       // console.log(htmlAccumulator);
     }
 
