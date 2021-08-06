@@ -35,9 +35,8 @@
 
     function buildHtml(data) {
       let htmlAccumulator = "<div>";
-        for (const rowData in data.sheets[0].data) {
-          console.log(rowData[0]);
-          console.dir(rowData);
+        for (const rowData in data.sheets[0].data[0].rowData) {
+          console.log(data.sheets[0].data[0].rowData[rowData]);
           htmlAccumulator = "<div>" + rowData.formattedValue + "<div>";
         }
       htmlAccumulator = htmlAccumulator + "</div>";
