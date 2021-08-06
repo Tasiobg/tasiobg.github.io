@@ -18,6 +18,7 @@
       // Loads the JavaScript client library and invokes `start` afterwards.
       function handleClientLoad() {
         gapi.load('client', start);
+        makeApiCall();
       }
 
       function makeApiCall() {
