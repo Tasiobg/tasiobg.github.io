@@ -33,10 +33,10 @@
         function (err) { console.error("Execute error", err); });
     }
 
-    function buildHtml(data){
+    function buildHtml(data) {
       let htmlAccumulator = "<div>";
         for (const rowData in data.sheets[0].data[0].rowData) {
-          console.log(rowData);
+          console.log(rowData[0]);
           htmlAccumulator = "<div>" + rowData.formattedValue + "<div>";
         }
       htmlAccumulator = htmlAccumulator + "</div>";
