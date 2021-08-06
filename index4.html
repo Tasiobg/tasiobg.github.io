@@ -32,7 +32,8 @@
       },
         function (err) { console.error("Execute error", err); });
     }
-
+    
+    var htmlAccumulator = '';
     function buildHtml(data) {
       htmlAccumulator = "<div>";
         for (const rowData in data.sheets[0].data[0].rowData) {
