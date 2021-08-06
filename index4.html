@@ -49,7 +49,7 @@
           htmlAccumulator += "<div class='row'>";
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
             htmlAccumulator += "<div class='cell'>";
-              htmlAccumulator += "<div>" + data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue + "<div>";
+              htmlAccumulator += data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
               htmlAccumulator += "</div>";
               // console.log(htmlAccumulator);
               // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
