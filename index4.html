@@ -35,20 +35,20 @@
     
     var htmlAccumulator = '';
     function buildHtml(data) {
-      htmlAccumulator = "<div>";
+      htmlAccumulator += "<div>";
         for (const rowData in data.sheets[0].data[0].rowData) {
           // lines
-          htmlAccumulator = htmlAccumulator + "<div class='row'>";
+          htmlAccumulator += "<div class='row'>";
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
-            htmlAccumulator = htmlAccumulator + "<div class='cell'>";
-              htmlAccumulator = "<div>" + data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue + "<div>";
-              htmlAccumulator = htmlAccumulator + "</div>";
+            htmlAccumulator += "<div class='cell'>";
+              htmlAccumulator += "<div>" + data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue + "<div>";
+              htmlAccumulator += "</div>";
               console.log(htmlAccumulator);
               // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
           }
-          htmlAccumulator = htmlAccumulator + "</div>";
+          htmlAccumulator += "</div>";
         }
-      htmlAccumulator = htmlAccumulator + "</div>";
+      htmlAccumulator += "</div>";
       document.getElementById('results').innerHTML = htmlAccumulator;
       // console.log(htmlAccumulator);
     }
