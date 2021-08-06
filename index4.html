@@ -23,11 +23,11 @@
 
     function execute() {
       return gapi.client.sheets.spreadsheets.get({
-        "spreadsheetId": "2PACX-1vRLSlGPq27upTf5qRlmeGlwVnECJWJP0U7dc2tWBHTrFOv98DHH6ZpOQ-3D5hzezkwWHvMw1iMaw86W",
+        "spreadsheetId": "1xou6_yJOAtKxzcugUWuE1JpzIhPqI0WMJN05M-U1sJc",
         "includeGridData": true
       }).then(function (response) {
         // Handle the results here (response.result has the parsed body).
-        console.log("Response", response);
+        console.log("Response", response.sheets.data.rowData);
       },
         function (err) { console.error("Execute error", err); });
     }
