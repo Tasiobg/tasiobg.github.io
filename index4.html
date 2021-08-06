@@ -37,6 +37,7 @@
       let htmlAccumulator = "<div>";
         for (const rowData in data.sheets[0].data[0].rowData) {
           console.log(rowData[0]);
+          console.dir(rowData);
           htmlAccumulator = "<div>" + rowData.formattedValue + "<div>";
         }
       htmlAccumulator = htmlAccumulator + "</div>";
