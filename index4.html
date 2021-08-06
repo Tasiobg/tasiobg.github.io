@@ -1,64 +1,43 @@
 <html>
-  <head>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+
+<head>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-    <script>
-      function start() {
-        // Initializes the client with the API key and the Translate API.
-        gapi.client.init({
-          'apiKey': 'AIzaSyBRW6aMCSm4aoo636LnVIExSMYWuow7IV4',
-          'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
-        }).then(function(response) {
-          console.log(response);
-        });
-      };
+  <script>
+    function start() {
+      // Initializes the client with the API key and the Translate API.
+      gapi.client.init({
+        'apiKey': 'AIzaSyBRW6aMCSm4aoo636LnVIExSMYWuow7IV4',
+        'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+      }).then(function (response) {
+        console.log(response);
+      });
+    };
 
-      // Loads the JavaScript client library and invokes `start` afterwards.
-      function handleClientLoad() {
-        gapi.load('client', start);
-        // execute();
-      }
-
-      function makeApiCall() {
-        var params = {
-          // The spreadsheet to request.
-          spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-
-          // The ranges to retrieve from the spreadsheet.
-          ranges: [],  // TODO: Update placeholder value.
-
-          // True if grid data should be returned.
-          // This parameter is ignored if a field mask was set in the request.
-          includeGridData: false,
-        };
-
-        var request = gapi.client.sheets.spreadsheets.get(params);
-        request.then(function(response) {
-          // TODO: Change code below to process the `response` object:
-          console.log(response.result);
-        }, function(reason) {
-          console.error('error: ' + reason.result.error.message);
-        });
+    // Loads the JavaScript client library and invokes `start` afterwards.
+    function handleClientLoad() {
+      gapi.load('client', start);
+      // execute();
     }
 
     function execute() {
       return gapi.client.sheets.spreadsheets.get({
-        "spreadsheetId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
-        "includeGridData": false
-      })
-          .then(function(response) {
-                  // Handle the results here (response.result has the parsed body).
-                  console.log("Response", response);
-                },
-                function(err) { console.error("Execute error", err); });
-  }
+        "spreadsheetId": "2PACX-1vRLSlGPq27upTf5qRlmeGlwVnECJWJP0U7dc2tWBHTrFOv98DHH6ZpOQ-3D5hzezkwWHvMw1iMaw86W",
+        "includeGridData": true
+      }).then(function (response) {
+        // Handle the results here (response.result has the parsed body).
+        console.log("Response", response);
+      },
+        function (err) { console.error("Execute error", err); });
+    }
 
-    </script>
-  </head>
-  <body>
-    <div id="results"></div>
-    <button onclick="execute()">execute</button>
-  </body>
+  </script>
+</head>
+
+<body>
+  <div id="results"></div>
+  <button onclick="execute()">execute</button>
+</body>
+
 </html>
