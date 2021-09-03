@@ -54,12 +54,12 @@
               if (typeof newCell[possition - 1] === 'undefined' || newCell[possition - 1].formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
                 newCell[possition] = data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
                 newCell[possition].rowSpawn = 1;
-                possition++;
+                ++possition;
                 rows = 1;
               } else {
                 newCell[possition - rows].rowSpawn = rows + 1;
-                rows++;
-                possition++;
+                ++rows;
+                ++possition;
               }
               newCell += data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
               // console.log(htmlAccumulator);
