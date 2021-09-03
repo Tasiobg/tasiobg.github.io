@@ -48,6 +48,7 @@
         let maxRows = 0;
         for (const rowData in data.sheets[0].data[0].rowData) {
           lenght = data.sheets[0].data[0].rowData[rowData].lenght;
+          console.dir(data.sheets[0].data[0].rowData[rowData]);
           if (length > maxRows) {
             maxRows = length;
           }
