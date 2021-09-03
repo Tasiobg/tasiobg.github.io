@@ -50,13 +50,13 @@
     function buildHtml(data) {
         let maxRows = 0;
         // find the max rows lenght
-        // for (const rowData in data.sheets[0].data[0].rowData) {
-        //   length = data.sheets[0].data[0].rowData[rowData].values.length;
-        //   // console.dir(data.sheets[0].data[0].rowData[rowData]);
-        //   if (length > maxRows) {
-        //     maxRows = length;
-        //   }
-        // }
+        for (const rowData in data.sheets[0].data[0].rowData) {
+          length = data.sheets[0].data[0].rowData[rowData].values.length;
+          // console.dir(data.sheets[0].data[0].rowData[rowData]);
+          if (length > maxRows) {
+            maxRows = length;
+          }
+        }
         htmlAccumulator += "<div class='container'>";
         for (const rowData in data.sheets[0].data[0].rowData) {
           // merge same items and increase row width
@@ -82,7 +82,7 @@
           }
           
           // lines
-          htmlAccumulator += "<div class='row'>";
+          htmlAccumulator += `<div class='row' style='grid-template-columns: repeat(${maxRows}, 1fr);'>`;
           let gridColumnCounter = 1;
           for (const cell in newCell) {
             if (newCell[cell].rowSpawn > 1) {
