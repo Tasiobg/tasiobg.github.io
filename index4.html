@@ -51,7 +51,7 @@
           let possition = 0;
           let rows = 1;
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
-              if (newCell[possition - 1]?.formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
+              if (typeof newCell[possition - 1] === 'undefined' || newCell[possition - 1].formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
                 newCell[possition] = data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
                 newCell[possition].rowSpawn = 1;
                 possition++;
