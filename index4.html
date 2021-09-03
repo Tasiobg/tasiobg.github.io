@@ -18,6 +18,7 @@
       padding-bottom: 5px;
       margin-top: 5px;
       margin-bottom: 5px;
+      background-color: rgba(80, 80, 80, 0.1);
     }
     </style>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
@@ -105,10 +106,10 @@
           for (const cell in newCell) {
             if (newCell[cell].rowSpawn > 1) {
               let columnEnd = gridColumnCounter + newCell[cell].rowSpawn;
-              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}/${columnEnd}${newCell[cell].bColor}'>`;
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}/${columnEnd}'>`;
               gridColumnCounter = gridColumnCounter + newCell[cell].rowSpawn;
             } else {
-              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}${newCell[cell].bColor}'>`;
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}'>`;
               ++gridColumnCounter;
             }
             htmlAccumulator += newCell[cell].formattedValue;
