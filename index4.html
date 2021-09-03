@@ -83,8 +83,8 @@
           for (const cell in newCell) {
             if (newCell[cell].rowSpawn > 1) {
               let columnEnd = gridColumnCounter + newCell[cell].rowSpawn;
-              gridColumnCounter = gridColumnCounter + newCell[cell].rowSpawn;
               htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}/${columnEnd}'>`;
+              gridColumnCounter = gridColumnCounter + newCell[cell].rowSpawn;
             } else {
               htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}'>`;
               ++gridColumnCounter;
