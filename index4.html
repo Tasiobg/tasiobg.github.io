@@ -4,6 +4,7 @@
   <style>
     .row {
       display: block;
+      border: 1px solid yellow; /* only for debuggin, remove */
     }
     .cell {
       display: inline-block;
@@ -45,6 +46,29 @@
     function buildHtml(data) {
       htmlAccumulator += "<div>";
         for (const rowData in data.sheets[0].data[0].rowData) {
+          // merge same items and increase row width
+          let newCell = [];
+          let possition = 0;
+          let rows = 1;
+          for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
+              if (newCell[possition - 1]?.formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
+                newCell[possition] = data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
+                newCell[possition].rowSpawn = 1;
+                possition++;
+                rows = 1;
+              } else {
+                newCell[possition - rows].rowSpawn = rows + 1;
+                rows++;
+                possition++;
+              }
+              newCell += data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
+              // console.log(htmlAccumulator);
+              // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
+          }
+
+          console.dir(newCell);
+
+
           // lines
           htmlAccumulator += "<div class='row'>";
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
