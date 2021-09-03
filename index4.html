@@ -78,7 +78,9 @@
                   newCell[possition].bColor = '';
                 } else {
                   newCell[possition].formattedValue = data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
-                  if(typeof data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor !== 'undefined') {
+                  if(typeof data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat !== 'undefined' &&
+                    typeof data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor !== 'undefined'
+                   ) {
                     let red = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.red;
                     let green = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.green;
                     let blue = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.blue;
