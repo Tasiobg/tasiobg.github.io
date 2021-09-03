@@ -36,7 +36,7 @@
         "includeGridData": true
       }).then(function (response) {
         // Handle the results here (response.result has the parsed body).
-        // console.log("Response", response.result);
+        console.log("Response", response.result);
         buildHtml(response.result);
       },
         function (err) { console.error("Execute error", err); });
@@ -45,6 +45,7 @@
     var htmlAccumulator = '';
     function buildHtml(data) {
       htmlAccumulator += "<div>";
+        let maxRows = 0;
         for (const rowData in data.sheets[0].data[0].rowData) {
           // merge same items and increase row width
           let newCell = [];
@@ -62,12 +63,18 @@
                 ++rows;
                 ++possition;
               }
-              // newCell += data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
-              // console.log(htmlAccumulator);
-              // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
           }
-          console.log('tasio1:');
-          console.dir(newCell);
+          // console.log('tasio1:');
+          // console.dir(newCell);
+
+          // calculate max rows
+          let rowCounter = 0;
+          for (const cell in newCell) {
+            rowCounter = rowCounter + cell.rowSpawn;
+          }
+          if (rowCounter > maxRows) {
+            maxRows = rowCounter;
+          }
 
 
           // lines
