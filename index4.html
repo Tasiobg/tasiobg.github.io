@@ -84,7 +84,7 @@
                     let red = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.red;
                     let green = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.green;
                     let blue = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.blue;
-                    newCell[possition].bColor = `,background-color: rgba(${red}, ${gree}, ${blue}, 1);`;
+                    newCell[possition].bColor = `,background-color: rgba(${red}, ${green}, ${blue}, 1);`;
                   } else {
                     newCell[possition].bColor = ',background-color: rgba(80, 80, 80, 0.1);';
                   }                  
