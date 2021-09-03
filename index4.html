@@ -47,6 +47,13 @@
       htmlAccumulator += "<div>";
         let maxRows = 0;
         for (const rowData in data.sheets[0].data[0].rowData) {
+          lenght = data.sheets[0].data[0].rowData[rowData].lenght;
+          if (length > maxRows) {
+            maxRows = length;
+          }
+        }
+console.log('Max lenght: ' + maxRows);
+        for (const rowData in data.sheets[0].data[0].rowData) {
           // merge same items and increase row width
           let newCell = [];
           let possition = 0;
