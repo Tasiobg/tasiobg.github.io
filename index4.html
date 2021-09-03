@@ -2,16 +2,16 @@
 
 <head>
   <style>
-    .container {
+    /* .container {
       display: grid;
       gap: 20px;
-    }
+    } */
     .row {
-      display: block;
+      display: grid;
       border: 1px solid yellow; /* only for debuggin, remove */
     }
     .cell {
-      display: inline-block;
+      grid-row: 1;
     }
     </style>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
@@ -76,19 +76,24 @@
                 ++possition;
               }
           }
-          // console.log('tasio1:');
-          // console.dir(newCell);
-
-          // lines
-          htmlAccumulator += "<div class='row'>";
-          for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
+          
+          for (const cell in newCell) {
             htmlAccumulator += "<div class='cell'>";
-            htmlAccumulator += data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
+            htmlAccumulator += newCell[cell].formattedValue;
             htmlAccumulator += "</div>";
-              // console.log(htmlAccumulator);
-              // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
           }
           htmlAccumulator += "</div>";
+
+          // lines
+          // htmlAccumulator += "<div class='row'>";
+          // for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
+          //   htmlAccumulator += "<div class='cell'>";
+          //   htmlAccumulator += data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
+          //   htmlAccumulator += "</div>";
+          //     // console.log(htmlAccumulator);
+          //     // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
+          // }
+          // htmlAccumulator += "</div>";
         }
       htmlAccumulator += "</div>";
       document.getElementById('results').innerHTML = htmlAccumulator;
