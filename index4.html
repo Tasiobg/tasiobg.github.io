@@ -20,7 +20,7 @@
         'apiKey': 'AIzaSyBRW6aMCSm4aoo636LnVIExSMYWuow7IV4',
         'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
       }).then(function (response) {
-        console.log(response);
+        // console.log(response);
       });
     };
 
@@ -36,7 +36,7 @@
         "includeGridData": true
       }).then(function (response) {
         // Handle the results here (response.result has the parsed body).
-        console.log("Response", response.result);
+        // console.log("Response", response.result);
         buildHtml(response.result);
       },
         function (err) { console.error("Execute error", err); });
@@ -66,7 +66,7 @@
               // console.log(htmlAccumulator);
               // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
           }
-
+          console.log('tasio1:');
           console.dir(newCell);
 
 
