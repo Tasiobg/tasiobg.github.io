@@ -79,12 +79,15 @@
           
           // lines
           htmlAccumulator += "<div class='row'>";
+          let gridColumnCounter = 1;
           for (const cell in newCell) {
             if (newCell[cell].rowSpawn > 1) {
-              htmlAccumulator += `<div class='cell' style='grid-row: ${newCell[cell].rowSpawn}'>`;
+              let columnEnd = gridColumnCounter + newCell[cell].rowSpawn;
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}/${columnEnd}'>`;
             } else {
-              htmlAccumulator += "<div class='cell'>";
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}'>`;
             }
+            ++gridColumnCounter;
             htmlAccumulator += newCell[cell].formattedValue;
             htmlAccumulator += "</div>";
           }
