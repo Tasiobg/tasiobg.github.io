@@ -2,6 +2,10 @@
 
 <head>
   <style>
+    .container {
+      display: grid;
+      gap: 20px;
+    }
     .row {
       display: block;
       border: 1px solid yellow; /* only for debuggin, remove */
@@ -44,16 +48,16 @@
     
     var htmlAccumulator = '';
     function buildHtml(data) {
-      htmlAccumulator += "<div>";
         let maxRows = 0;
-        for (const rowData in data.sheets[0].data[0].rowData) {
-          length = data.sheets[0].data[0].rowData[rowData].values.length;
-          // console.dir(data.sheets[0].data[0].rowData[rowData]);
-          if (length > maxRows) {
-            maxRows = length;
-          }
-        }
-console.log('Max lenght: ' + maxRows);
+        // find the max rows lenght
+        // for (const rowData in data.sheets[0].data[0].rowData) {
+        //   length = data.sheets[0].data[0].rowData[rowData].values.length;
+        //   // console.dir(data.sheets[0].data[0].rowData[rowData]);
+        //   if (length > maxRows) {
+        //     maxRows = length;
+        //   }
+        // }
+        htmlAccumulator += "<div class='container'>";
         for (const rowData in data.sheets[0].data[0].rowData) {
           // merge same items and increase row width
           let newCell = [];
@@ -74,16 +78,6 @@ console.log('Max lenght: ' + maxRows);
           }
           // console.log('tasio1:');
           // console.dir(newCell);
-
-          // calculate max rows
-          let rowCounter = 0;
-          for (const cell in newCell) {
-            rowCounter = rowCounter + cell.rowSpawn;
-          }
-          if (rowCounter > maxRows) {
-            maxRows = rowCounter;
-          }
-
 
           // lines
           htmlAccumulator += "<div class='row'>";
