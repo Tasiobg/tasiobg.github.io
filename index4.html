@@ -8,10 +8,10 @@
     } */
     .row {
       display: grid;
-      border: 1px solid yellow; /* only for debuggin, remove */
     }
     .cell {
       grid-row: 1;
+      border: 1px solid yellow; /* only for debuggin, remove */
     }
     </style>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
@@ -80,7 +80,11 @@
           // lines
           htmlAccumulator += "<div class='row'>";
           for (const cell in newCell) {
-            htmlAccumulator += "<div class='cell'>";
+            if (newCell[cell].rowSpawn > 1) {
+              htmlAccumulator += `<div class='cell' style='grid-row: ${newCell[cell].rowSpawn}'>`;
+            } else {
+              htmlAccumulator += "<div class='cell'>";
+            }
             htmlAccumulator += newCell[cell].formattedValue;
             htmlAccumulator += "</div>";
           }
