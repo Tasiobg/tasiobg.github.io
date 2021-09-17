@@ -48,7 +48,7 @@
       },
         function (err) {
           console.error("Execute error", err);
-          if (err?.error?.status === 'PERMISSION_DENIED') {
+          if (err?.result?.error?.status === 'PERMISSION_DENIED') {
             console.log('this is the expected error when document is private');
           }
           else {
