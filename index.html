@@ -2,7 +2,7 @@
 <html lang="en-GB">
 
 <head>
-  <title>Ongoing experiment v24</title>
+  <title>Ongoing experiment v25</title>
   <style>
     .row {
       display: grid;
@@ -105,7 +105,7 @@
               if (typeof newCell[possition - rows] === 'undefined' || newCell[possition - rows].formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
                 newCell[possition] = {};
                 // remove empty rows
-                if (rowData > maxRows) {
+                if (cell > maxRows) {
                   break;
                 }
                 // remove empty value and apply colors
