@@ -16,7 +16,7 @@
       margin-top: 5px;
       margin-bottom: 5px;
     }
-    </style>
+  </style>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
     onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
@@ -81,7 +81,7 @@
     var htmlAccumulator = '';
     function buildHtml(data) {
         let maxRows = 0;
-        // find the max rows length
+        // find the max rows length, used for the CSS grid
         for (const rowData in data.sheets[0].data[0].rowData) {
           let length = 0;
           const maxLength = data.sheets[0].data[0].rowData[rowData].values.length;
@@ -104,6 +104,10 @@
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
               if (typeof newCell[possition - rows] === 'undefined' || newCell[possition - rows].formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
                 newCell[possition] = {};
+                // remove empty rows
+                if (rowData > maxRows) {
+                  break;
+                }
                 // remove empty value and apply colors
                 if (typeof data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue === 'undefined') {
                   newCell[possition].formattedValue = '';
