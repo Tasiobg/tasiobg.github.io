@@ -46,7 +46,12 @@
         console.log("Response", response.result);
         buildHtml(response.result);
       },
-        function (err) { console.error("Execute error", err); });
+        function (err) {
+          console.error("Execute error", err);
+          if (err?.error?.status === 'PERMISSION_DENIED') {
+            console.log('this is the expected error when document is private');
+          }
+        });
     }
     
     var htmlAccumulator = '';
