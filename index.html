@@ -26,6 +26,8 @@
       gapi.client.init({
         'apiKey': 'AIzaSyBRW6aMCSm4aoo636LnVIExSMYWuow7IV4',
         'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+        'clientId': '911151820985-ble4mlioiaqb5grec4o0arcc8qc74g5s.apps.googleusercontent.com',
+        'scope': 'https://www.googleapis.com/auth/spreadsheets.readonly'
       }).then(function (response) {
         // console.log(response);
       });
@@ -50,9 +52,6 @@
           console.error("Execute error", err);
           if (err?.result?.error?.status === 'PERMISSION_DENIED') {
             console.log('this is the expected error when document is private');
-          }
-          else {
-            console.log('something else is wrong');
           }
         });
     }
