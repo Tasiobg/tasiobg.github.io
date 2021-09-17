@@ -2,7 +2,7 @@
 <html lang="en-GB">
 
 <head>
-  <title>Ongoing experiment v25</title>
+  <title>Ongoing experiment v26</title>
   <style>
     .row {
       display: grid;
@@ -102,12 +102,12 @@
           let possition = 0;
           let rows = 1;
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
+              // remove empty rows
+              if (cell > maxRows) {
+                break;
+              }
               if (typeof newCell[possition - rows] === 'undefined' || newCell[possition - rows].formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
                 newCell[possition] = {};
-                // remove empty rows
-                if (cell > maxRows) {
-                  break;
-                }
                 // remove empty value and apply colors
                 if (typeof data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue === 'undefined') {
                   newCell[possition].formattedValue = '';
