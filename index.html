@@ -44,7 +44,7 @@
     // Loads the JavaScript client library and invokes `start` afterwards.
     function handleClientLoad() {
       gapi.load('client:auth2', start);
-      // execute();
+      execute();
     }
 
     function execute() {
@@ -60,6 +60,8 @@
           console.error("Execute error", err);
           if (err?.result?.error?.status === 'PERMISSION_DENIED') {
             console.log('this is the expected error when document is private');
+            gapi.auth2.getAuthInstance().signIn();
+            execute();
           }
         });
     }
