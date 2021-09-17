@@ -21,6 +21,10 @@
     onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
   <script>
+    let params = new URLSearchParams(document.location.search.substring(1));
+    const spreadsheetId = params.get("ssid");
+    // const spreadsheetId = '1xou6_yJOAtKxzcugUWuE1JpzIhPqI0WMJN05M-U1sJc';
+
     function start() {
       // Initializes the client with the API key and the Translate API.
       gapi.client.init({
@@ -49,7 +53,7 @@
 
     function execute() {
       return gapi.client.sheets.spreadsheets.get({
-        "spreadsheetId": "1xou6_yJOAtKxzcugUWuE1JpzIhPqI0WMJN05M-U1sJc",
+        "spreadsheetId": spreadsheetId,
         "includeGridData": true
       }).then(function (response) {
         // Handle the results here (response.result has the parsed body).
