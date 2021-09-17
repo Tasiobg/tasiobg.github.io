@@ -140,7 +140,7 @@
           htmlAccumulator += `<div class='row' style='grid-template-columns: repeat(${maxRows}, 1fr);'>`;
           let gridColumnCounter = 1;
           for (const cell in newCell) {
-            if (newCell[cell].userEnteredFormat?.textFormat?.bold == 'true') {
+            if (newCell[cell].userEnteredFormat?.textFormat?.bold == true) {
                 let fontWeight = 'font-weight: bold;';
             } else {
               fontWeight = 'font-weight: normal;';
