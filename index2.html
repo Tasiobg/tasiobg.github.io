@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>v1</title>
+    <title>v2</title>
   </head>
   <body>
     <!--
@@ -36,6 +36,7 @@
 
       var request = gapi.client.sheets.spreadsheets.values.get(params);
       request.then(function(response) {
+        console.log(response);
         // TODO: Change code below to process the `response` object:
         console.log(response.result);
       }, function(reason) {
