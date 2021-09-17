@@ -2,7 +2,7 @@
 <html lang="en-GB">
 
 <head>
-  <title>Ongoing experiment v5</title>
+  <title>Ongoing experiment v6</title>
   <style>
     .row {
       display: grid;
@@ -60,8 +60,9 @@
           console.error("Execute error", err);
           if (err?.result?.error?.status === 'PERMISSION_DENIED') {
             console.log('this is the expected error when document is private');
-            gapi.auth2.getAuthInstance().signIn();
-            execute();
+            let promise = gapi.auth2.getAuthInstance().signIn();
+            console.log(promise);
+            // execute();
           }
         });
     }
