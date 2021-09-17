@@ -2,7 +2,7 @@
 <html lang="en-GB">
 
 <head>
-  <title>Ongoing experiment v14</title>
+  <title>Ongoing experiment v15</title>
   <style>
     .row {
       display: grid;
@@ -22,6 +22,7 @@
     </script>
   <script>
     let params = new URLSearchParams(document.location.search.substring(1));
+    const pageWidth = params.get("w");
     const spreadsheetId = params.get("ssid");
     // const spreadsheetId = '1xou6_yJOAtKxzcugUWuE1JpzIhPqI0WMJN05M-U1sJc';
 
@@ -69,6 +70,13 @@
           }
         });
     }
+    function calculatedWidth(){
+      if (parseInt(pageWidth) > 0) {
+        return parseInt(pageWidth);
+      } else {
+        return 'auto';
+      }
+    }
     
     var htmlAccumulator = '';
     function buildHtml(data) {
@@ -81,7 +89,7 @@
             maxRows = length;
           }
         }
-        htmlAccumulator += "<div class='container'>";
+        htmlAccumulator += `<div class='container' style='width=${calculatedWidth}'>`;
         for (const rowData in data.sheets[0].data[0].rowData) {
           // merge same items and increase row width
           let newCell = [];
