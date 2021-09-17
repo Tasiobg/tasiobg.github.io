@@ -18,7 +18,6 @@
       padding-bottom: 5px;
       margin-top: 5px;
       margin-bottom: 5px;
-      background-color: rgba(80, 80, 80, 0.1);
     }
     </style>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
@@ -82,9 +81,9 @@
                   if(typeof data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat !== 'undefined' &&
                     typeof data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor !== 'undefined'
                    ) {
-                    let red = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.red * 10;
-                    let green = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.green * 10;
-                    let blue = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.blue * 10;
+                    let red = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.red * 255;
+                    let green = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.green * 255;
+                    let blue = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.blue * 255;
                     newCell[possition].bColor = `;background-color: rgba(${red}, ${green}, ${blue}, 0.5);`;
                   } else {
                     newCell[possition].bColor = ';background-color: rgba(80, 80, 80, 0.1);';
@@ -106,10 +105,10 @@
           for (const cell in newCell) {
             if (newCell[cell].rowSpawn > 1) {
               let columnEnd = gridColumnCounter + newCell[cell].rowSpawn;
-              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}/${columnEnd}'>`;
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}/${columnEnd}${newCell[cell].bColor}'>`;
               gridColumnCounter = gridColumnCounter + newCell[cell].rowSpawn;
             } else {
-              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}'>`;
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}${newCell[cell].bColor}'>`;
               ++gridColumnCounter;
             }
             htmlAccumulator += newCell[cell].formattedValue;
