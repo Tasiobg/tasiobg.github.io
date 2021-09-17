@@ -1,12 +1,155 @@
 <!DOCTYPE html>
 <html lang="en-GB">
-  <head>
-    <title>Test</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-  </head>
-  <body>
-    <div id="data-goes-here">Hello world!</div>
-    <script src="script.js"></script>
-  </body>
+
+<head>
+  <title>Ongoing experiment</title>
+  <style>
+    .row {
+      display: grid;
+      gap: 10px;
+    }
+    .cell {
+      grid-row: 1;
+      text-align: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    </style>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  <script>
+    function start() {
+      // Initializes the client with the API key and the Translate API.
+      gapi.client.init({
+        'apiKey': 'AIzaSyBRW6aMCSm4aoo636LnVIExSMYWuow7IV4',
+        'discoveryDocs': ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+      }).then(function (response) {
+        // console.log(response);
+      });
+    };
+
+    // Loads the JavaScript client library and invokes `start` afterwards.
+    function handleClientLoad() {
+      gapi.load('client', start);
+      // execute();
+    }
+
+    function execute() {
+      return gapi.client.sheets.spreadsheets.get({
+        "spreadsheetId": "1xou6_yJOAtKxzcugUWuE1JpzIhPqI0WMJN05M-U1sJc",
+        "includeGridData": true
+      }).then(function (response) {
+        // Handle the results here (response.result has the parsed body).
+        console.log("Response", response.result);
+        buildHtml(response.result);
+      },
+        function (err) { console.error("Execute error", err); });
+    }
+    
+    var htmlAccumulator = '';
+    function buildHtml(data) {
+        let maxRows = 0;
+        // find the max rows lenght
+        for (const rowData in data.sheets[0].data[0].rowData) {
+          length = data.sheets[0].data[0].rowData[rowData].values.length;
+          // console.dir(data.sheets[0].data[0].rowData[rowData]);
+          if (length > maxRows) {
+            maxRows = length;
+          }
+        }
+        htmlAccumulator += "<div class='container'>";
+        for (const rowData in data.sheets[0].data[0].rowData) {
+          // merge same items and increase row width
+          let newCell = [];
+          let possition = 0;
+          let rows = 1;
+          for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
+              if (typeof newCell[possition - rows] === 'undefined' || newCell[possition - rows].formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
+                newCell[possition] = {};
+                // remove empty value and apply colors
+                if (typeof data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue === 'undefined') {
+                  newCell[possition].formattedValue = '';
+                  newCell[possition].bColor = '';
+                } else {
+                  newCell[possition].formattedValue = data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
+                  if(typeof data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat !== 'undefined' &&
+                    typeof data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor !== 'undefined'
+                   ) {
+                    let red = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.red * 255;
+                    let green = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.green * 255;
+                    let blue = data.sheets[0].data[0].rowData[rowData].values[cell].userEnteredFormat.backgroundColor.blue * 255;
+                    newCell[possition].bColor = `;background-color: rgb(${red}, ${green}, ${blue});`;
+                  } else {
+                    newCell[possition].bColor = ';background-color: rgba(80, 80, 80, 0.1);';
+                  }                  
+                }
+                newCell[possition].rowSpawn = 1;
+                ++possition;
+                rows = 1;
+              } else {
+                newCell[possition - rows].rowSpawn = rows + 1;
+                ++rows;
+                ++possition;
+              }
+          }
+          
+          // lines
+          htmlAccumulator += `<div class='row' style='grid-template-columns: repeat(${maxRows}, 1fr);'>`;
+          let gridColumnCounter = 1;
+          for (const cell in newCell) {
+            if (newCell[cell].rowSpawn > 1) {
+              let columnEnd = gridColumnCounter + newCell[cell].rowSpawn;
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}/${columnEnd}${newCell[cell].bColor}'>`;
+              gridColumnCounter = gridColumnCounter + newCell[cell].rowSpawn;
+            } else {
+              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}${newCell[cell].bColor}'>`;
+              ++gridColumnCounter;
+            }
+            htmlAccumulator += newCell[cell].formattedValue;
+            htmlAccumulator += "</div>";
+          }
+          htmlAccumulator += "</div>";
+
+          // lines
+          // htmlAccumulator += "<div class='row'>";
+          // for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
+          //   htmlAccumulator += "<div class='cell'>";
+          //   htmlAccumulator += data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue;
+          //   htmlAccumulator += "</div>";
+          //     // console.log(htmlAccumulator);
+          //     // console.log(data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue);
+          // }
+          // htmlAccumulator += "</div>";
+        }
+      htmlAccumulator += "</div>";
+      document.getElementById('results').innerHTML = htmlAccumulator;
+      // console.log(htmlAccumulator);
+    }
+
+  </script>
+</head>
+
+<body>
+  <div id="results">
+    <!-- <div class="row">
+      <div class="cell"></div>
+      <div class="cell">2-Aug-2021</div>
+      <div class="cell">9-Aug-2021</div>
+      <div class="cell">16-Aug-2021</div>
+      <div class="cell">23-Aug-2021</div>
+    </div>
+    <div class="row">
+      <div class="cell">Person1</div>
+      <div class="cell">Project Name one</div>
+      <div class="cell">Project Name one</div>
+      <div class="cell">Project name two</div>
+      <div class="cell">Project name two</div>
+    </div> -->
+  </div>
+  <button onclick="execute()">execute</button>
+</body>
+
 </html>
