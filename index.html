@@ -51,6 +51,9 @@
           if (err?.error?.status === 'PERMISSION_DENIED') {
             console.log('this is the expected error when document is private');
           }
+          else {
+            console.log('something else is wrong');
+          }
         });
     }
     
