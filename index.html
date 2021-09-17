@@ -2,7 +2,7 @@
 <html lang="en-GB">
 
 <head>
-  <title>Ongoing experiment v17</title>
+  <title>Ongoing experiment v18</title>
   <style>
     .row {
       display: grid;
@@ -89,7 +89,7 @@
             maxRows = length;
           }
         }
-        htmlAccumulator += `<div class='container' style='width=${calculatedWidth()}px'>`;
+        htmlAccumulator += `<div class='container' style='width:${calculatedWidth()}px'>`;
         for (const rowData in data.sheets[0].data[0].rowData) {
           // merge same items and increase row width
           let newCell = [];
