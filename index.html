@@ -140,17 +140,17 @@
           htmlAccumulator += `<div class='row' style='grid-template-columns: repeat(${maxRows}, 1fr);'>`;
           let gridColumnCounter = 1;
           for (const cell in newCell) {
+            if (newCell[cell].userEnteredFormat?.textFormat?.bold == 'true') {
+                let fontWeight = 'font-weight: bold;';
+            } else {
+              fontWeight = 'font-weight: normal;';
+            }
             if (newCell[cell].rowSpawn > 1) {
               let columnEnd = gridColumnCounter + newCell[cell].rowSpawn;
-              if (newCell[cell].userEnteredFormat?.textFormat?.bold == 'true') {
-                let fontWeight = 'font-weight: bold;';
-              } else {
-                fontWeight = 'font-weight: normal;';
-              }
               htmlAccumulator += `<div class='cell' style='${fontWeight} grid-column: ${gridColumnCounter}/${columnEnd}${newCell[cell].bColor}'>`;
               gridColumnCounter = gridColumnCounter + newCell[cell].rowSpawn;
             } else {
-              htmlAccumulator += `<div class='cell' style='grid-column: ${gridColumnCounter}${newCell[cell].bColor}'>`;
+              htmlAccumulator += `<div class='cell' style='${fontWeight} grid-column: ${gridColumnCounter}${newCell[cell].bColor}'>`;
               ++gridColumnCounter;
             }
             htmlAccumulator += newCell[cell].formattedValue;
