@@ -2,7 +2,7 @@
 <html lang="en-GB">
 
 <head>
-  <title>Ongoing experiment v9</title>
+  <title>Ongoing experiment v10</title>
   <style>
     .row {
       display: grid;
@@ -41,14 +41,14 @@
 
     function updateSignInStatus(isSignedIn) {
       if (isSignedIn) {
-        // execute();
+        execute();
       }
     }
 
     // Loads the JavaScript client library and invokes `start` afterwards.
     function handleClientLoad() {
       gapi.load('client:auth2', start);
-      execute();
+      // execute();
     }
 
     function execute() {
