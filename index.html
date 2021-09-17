@@ -103,7 +103,7 @@
           let rows = 1;
           for (const cell in data.sheets[0].data[0].rowData[rowData].values) {
               // remove empty rows
-              if (cell > maxRows) {
+              if (cell >= maxRows) {
                 break;
               }
               if (typeof newCell[possition - rows] === 'undefined' || newCell[possition - rows].formattedValue != data.sheets[0].data[0].rowData[rowData].values[cell].formattedValue) {
