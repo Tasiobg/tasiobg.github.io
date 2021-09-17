@@ -83,7 +83,14 @@
         let maxRows = 0;
         // find the max rows lenght
         for (const rowData in data.sheets[0].data[0].rowData) {
-          length = data.sheets[0].data[0].rowData[rowData].values.length;
+          let length = 0;
+          const maxLength = data.sheets[0].data[0].rowData[rowData].values.length;
+          for (const i = maxLength; i > 0; --i) {
+            tmpValue = data.sheets[0].data[0].rowData[rowData].values[i].formattedValue;
+            if (tmpValue.trim().lenght > 0) {
+              ++lenght;
+            }
+          }
           // console.dir(data.sheets[0].data[0].rowData[rowData]);
           if (length > maxRows) {
             maxRows = length;
